@@ -18,7 +18,6 @@ public class BioClient extends IClient{
     @Override
     public RpcResponse send(RpcRequest request) throws Exception {
 
-//        byte[] requestBytes = serializer.serialize(request);
         Socket sc = new Socket("127.0.0.1",7080);
         OutputStream os = sc.getOutputStream();
         ObjectOutputStream oo = new ObjectOutputStream(os);
@@ -28,15 +27,6 @@ public class BioClient extends IClient{
         ObjectInputStream oi = new ObjectInputStream(is);
         RpcResponse ret = (RpcResponse) oi.readObject();
         return  ret;
-
-
-
-//        os.write(requestBytes);
-//        os.flush();
-//        InputStream is = sc.getInputStream();
-//        byte[] responseBytes = new byte[]{};
-//        int tem = is.read(responseBytes);
-//        return (RpcResponse) serializer.deserialize(responseBytes, RpcResponse.class);
 
     }
 }

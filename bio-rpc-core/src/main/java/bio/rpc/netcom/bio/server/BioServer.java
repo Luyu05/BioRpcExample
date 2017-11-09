@@ -4,7 +4,6 @@ import bio.rpc.netcom.NetComServerFactory;
 import bio.rpc.netcom.Rules.RpcRequest;
 import bio.rpc.netcom.Rules.RpcResponse;
 import bio.rpc.netcom.server.IServer;
-import bio.rpc.serialize.Serializer;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -15,13 +14,12 @@ import java.net.Socket;
  */
 public class BioServer extends IServer{
 
-    private Serializer serializer;
+
 
     @Override
-    public void start(final int port, final Serializer serializer) throws Exception {
+    public void start(final int port) throws Exception {
 
         BioServer server = new BioServer();
-        this.serializer = serializer;
         server.init(port);
 
     }

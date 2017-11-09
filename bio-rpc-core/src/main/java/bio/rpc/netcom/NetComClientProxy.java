@@ -4,7 +4,6 @@ import bio.rpc.netcom.Rules.RpcRequest;
 import bio.rpc.netcom.Rules.RpcResponse;
 import bio.rpc.netcom.bio.client.BioClient;
 import bio.rpc.netcom.client.IClient;
-import bio.rpc.serialize.Serializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
