@@ -23,14 +23,12 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
 
     // ---------------------- config ----------------------
     private String serverAddress;
-    private Serializer serializer = Serializer.SerializeEnum.HESSIAN.serializer;
     private Class<?> iface;
     private long timeoutMillis = 5000;
 
     public NetComClientProxy(){	}
-    public NetComClientProxy(String serverAddress, Serializer serializer, Class<?> iface, long timeoutMillis) {
+    public NetComClientProxy(String serverAddress,Class<?> iface, long timeoutMillis) {
         this.setServerAddress(serverAddress);
-        this.serializer = serializer;
         this.setIface(iface);
         this.setTimeoutMillis(timeoutMillis);
         try {
@@ -43,9 +41,7 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
     public void setServerAddress(String serverAddress) {
         this.serverAddress = serverAddress;
     }
-    public void setSerializer(String serializer) {
-        this.serializer = Serializer.SerializeEnum.match(serializer, Serializer.SerializeEnum.HESSIAN).serializer;
-    }
+
     public void setIface(Class<?> iface) {
         this.iface = iface;
     }
@@ -59,7 +55,7 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
     @Override
     public void afterPropertiesSet() throws Exception {
         client = new BioClient();
-        client.init(serverAddress, serializer, timeoutMillis);
+        client.init(serverAddress, timeoutMillis);
     }
 
     @Override

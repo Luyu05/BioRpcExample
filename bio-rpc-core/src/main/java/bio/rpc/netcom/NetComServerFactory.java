@@ -26,19 +26,9 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
     // ---------------------- server config ----------------------
     private int port = 7080;
     private int http_port = 7070;
-    private Serializer serializer = Serializer.SerializeEnum.HESSIAN.serializer;
 
     public void setPort(int port) {
         this.port = port;
-    }
-    public void setHttp_port(int http_port) {
-        this.http_port = http_port;
-    }
-    public void setSerializer(String serializer) {
-        this.serializer = Serializer.SerializeEnum.match(serializer, Serializer.SerializeEnum.HESSIAN).serializer;
-    }
-    public Serializer getSerializer() {
-        return serializer;
     }
 
     // ---------------------- server init ----------------------
@@ -59,10 +49,6 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
             String methodName = request.getMethodName();
             Class<?>[] parameterTypes = request.getParameterTypes();
             Object[] parameters = request.getParameters();
-
-            /*Method method = serviceClass.getMethod(methodName, parameterTypes);
-            method.setAccessible(true);
-            return method.invoke(serviceBean, parameters);*/
 
             FastClass serviceFastClass = FastClass.create(serviceClass);
             FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
@@ -92,7 +78,6 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
     }
 
     private IServer server;
-//    private IServer httpserver;
     @Override
     public void afterPropertiesSet() throws Exception {
         // init rpc provider
@@ -101,26 +86,17 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
             public void run() {
                 server = new BioServer();
                 try {
-                    server.start(port, serializer);
+                    server.start(port);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-//        t.setDaemon(true);
         t.start();
-        Thread.sleep(3000);
-
-        // init rpc-http provider
-//        httpserver = NetComEnum.JETTY.serverClass.newInstance();
-//        httpserver.start(http_port, serializer);
-
     }
 
     @Override
     public void destroy() throws Exception {
-
         server.destroy();
-//        httpserver.destroy();
     }
 }
