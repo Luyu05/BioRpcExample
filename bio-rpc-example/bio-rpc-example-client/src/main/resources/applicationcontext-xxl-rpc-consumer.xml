@@ -4,11 +4,10 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-
 	<bean id="demoService" class="bio.rpc.netcom.NetComClientProxy">
 		<property name="serverAddress" value="127.0.0.1:7080" />
 		<property name="serializer" value="HESSIAN" />
-		<property name="iface" value="com.xxl.rpc.example.api.IDemoService" />
+		<property name="iface" value="bio.rpc.example.api.IDemoService" />
 	</bean>
 	
 
