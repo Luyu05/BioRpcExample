@@ -25,7 +25,6 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
 
     // ---------------------- server config ----------------------
     private int port = 7080;
-    private int http_port = 7070;
 
     public void setPort(int port) {
         this.port = port;
