@@ -55,7 +55,7 @@ public class RpcRequest implements Serializable {
 
     @Override
     public String toString() {
-        return "NettyRequest [requestId=" + requestId + ", createMillisTime="
+        return "RpcRequest [requestId=" + requestId + ", createMillisTime="
                 + createMillisTime + ", className=" + className
                 + ", methodName=" + methodName + ", parameterTypes="
                 + Arrays.toString(parameterTypes) + ", parameters="

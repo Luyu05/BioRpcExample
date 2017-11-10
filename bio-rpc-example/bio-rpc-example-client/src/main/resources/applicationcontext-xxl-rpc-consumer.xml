@@ -8,6 +8,10 @@
 		<property name="serverAddress" value="127.0.0.1:7080" />
 		<property name="iface" value="bio.rpc.example.api.IDemoService" />
 	</bean>
-	
+
+	<bean id="userService" class="bio.rpc.netcom.NetComClientProxy">
+		<property name="serverAddress" value="127.0.0.1:7080" />
+		<property name="iface" value="bio.rpc.example.api.UserService" />
+	</bean>
 
 </beans>

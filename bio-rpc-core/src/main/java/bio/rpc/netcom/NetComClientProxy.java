@@ -80,8 +80,8 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
 
                         // valid response
                         if (response == null) {
-                            logger.error(">>>>>>>>>>> bio-rpc netty response not found.");
-                            throw new Exception(">>>>>>>>>>> bio-rpc netty response not found.");
+                            logger.error(">>>>>>>>>>> bio-rpc response not found.");
+                            throw new Exception(">>>>>>>>>>> bio-rpc response not found.");
                         }
                         if (response.isError()) {
                             throw response.getError();

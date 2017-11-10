@@ -19,7 +19,6 @@
         </dependency>
 
         <!-- springframe start -->
-        <!-- (级联spring:aopalliance + commons-logging + spring-aop/beans/context/core/expression/web/webmvc) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>

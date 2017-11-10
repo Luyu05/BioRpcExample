@@ -31,9 +31,7 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
     }
 
     // ---------------------- server init ----------------------
-    /**
-     * init local rpc service map
-     */
+
     private static Map<String, Object> serviceMap = new HashMap<String, Object>();
     public static RpcResponse invokeService(RpcRequest request, Object serviceBean) {
         if (serviceBean==null) {
@@ -48,12 +46,9 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
             String methodName = request.getMethodName();
             Class<?>[] parameterTypes = request.getParameterTypes();
             Object[] parameters = request.getParameters();
-
             FastClass serviceFastClass = FastClass.create(serviceClass);
             FastMethod serviceFastMethod = serviceFastClass.getMethod(methodName, parameterTypes);
-
             Object result = serviceFastMethod.invoke(serviceBean, parameters);
-
             response.setResult(result);
         } catch (Throwable t) {
             t.printStackTrace();

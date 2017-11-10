@@ -15,14 +15,17 @@ import java.util.List;
 public class IndexController {
     @Resource
     private IDemoService demoService;
+    @Resource
+    private UserService userService;
 
     @RequestMapping("")
     @ResponseBody
     public List<String> http() throws Exception {
-        String userName = "jack";
+        String userName = "milk";
 
         List<String> list = new ArrayList<String>();
         list.add(demoService.sayHi(userName).toString());
+        list.add(userService.introduce(userName));
 
         return list;
     }

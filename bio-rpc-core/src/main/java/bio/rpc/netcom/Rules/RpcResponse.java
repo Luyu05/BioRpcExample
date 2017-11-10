@@ -42,7 +42,7 @@ public class RpcResponse implements Serializable {
 
     @Override
     public String toString() {
-        return "NettyResponse [requestId=" + requestId + ", error=" + error
+        return "RpcResponse [requestId=" + requestId + ", error=" + error
                 + ", result=" + result + "]";
     }
 
