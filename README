@@ -1,3 +1,27 @@
-基于BIO的一个RPC调用的例子
+前言：基于Spring开发的基于BIO的RPC调用的例子
 服务调用端采用动态代理，每次对象调用方法，都将请求参数发送给服务提供端
 序列化方式采用的是java原生的方法
+
+1.Server
+  1.1 在web启动的配置文件中，定义了原始类为框架核心的类-NetComServerFactory,项目启动时，会自动实例化该bean
+  1.2 NetComServerFactory中首先会执行bean定义时的property标签对应的set方法
+  1.3 接下来执行从ApplicationContextAware继承的setApplicationContext方法
+  1.4 setApplicationContext中，调用了一个有趣的方法applicationContext.getBeansWithAnnotation(RpcProviderService.class)
+  1.5 这个方法将带有@RpcProviderService标签的bean 都找到，然后在setApplicationContext中将这些bean 以类名字为主键 bean本身为value 放到了一个map里，名字是serviceMap
+  1.6 接下来执行afterPropertiesSet方法，该方法继承自InitializingBean接口
+  1.7 在afterPropertiesSet方法中，开启了一个新的线程来在服务端启动一个端口，来监听客户端的请求，由于基于bio所以这时候新的线程内部会堵塞
+  1.8 获取到连接后，服务端对每一个客户端到来的连接都创建一个新线程，获取客户端输入对象-反序列化并解析对象
+  1.9 根据客户端的请求传来的接口信息，从之前的serviceMap中根据类名字找到对应的类,通过反射获取对应类的实例并调用目标方法
+  1.10 将反射调用的结果，封装并传给客户端，关闭连接
+
+2.Client
+  2.1 在web启动的配置文件中，定义了要使用的服务端的bean，原始类为框架核心的类--NetComClientProxy，项目启动时，会自动实例化该bean
+  2.2 在NetComClientProxy中继承自FactoryBean的getObject方法中return了一个自定义的代理类，Proxy.newProxyInstance(xxx)
+  2.3 接上，覆写了invoke方法，使得代理每次调用原始接口方法的时候，都会调用这个invoke方法；
+  2.4 该方法将当前方法的信息、类信息封装为请求，一并通过socket发送到服务端，并接收服务端的响应，将结果返回给调用方。
+
+TODO
+  1.nio
+  2.netty
+  3.zk
+  4.hessian
