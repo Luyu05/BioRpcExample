@@ -3,6 +3,7 @@ package bio.rpc.netcom;
 import bio.rpc.netcom.Rules.RpcRequest;
 import bio.rpc.netcom.Rules.RpcResponse;
 import bio.rpc.netcom.bio.client.BioClient;
+import bio.rpc.netcom.bio.client.NioClient;
 import bio.rpc.netcom.client.IClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
     private String serverAddress;
     private Class<?> iface;
     private long timeoutMillis = 5000;
+    private int netcom = 0;
 
     public NetComClientProxy(){	}
     public NetComClientProxy(String serverAddress,Class<?> iface, long timeoutMillis) {
@@ -49,12 +51,19 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
         this.timeoutMillis = timeoutMillis;
     }
 
+    public void setNetcom(int netcom){
+        this.netcom = netcom;
+    }
+
     // ---------------------- init client, operate ----------------------
     IClient client = null;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        client = new BioClient();
+        if(client != null){
+            return;
+        }
+        client = netcom == 1 ? new NioClient() : new BioClient();
         client.init(serverAddress, timeoutMillis);
     }
 

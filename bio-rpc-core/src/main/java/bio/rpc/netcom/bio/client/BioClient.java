@@ -4,11 +4,11 @@ import bio.rpc.netcom.Rules.RpcRequest;
 import bio.rpc.netcom.Rules.RpcResponse;
 import bio.rpc.netcom.client.IClient;
 
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
 /**
  * Created by luyu on 2017/11/9.
@@ -29,4 +29,5 @@ public class BioClient extends IClient{
         return  ret;
 
     }
+
 }

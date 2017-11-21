@@ -3,6 +3,7 @@ package bio.rpc.netcom;
 import bio.rpc.netcom.Rules.*;
 import bio.rpc.netcom.annotation.RpcProviderService;
 import bio.rpc.netcom.bio.server.BioServer;
+import bio.rpc.netcom.bio.server.NioServer;
 import bio.rpc.netcom.server.IServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,15 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    /**
+     * 0=BIO 1=NIO
+     * */
+    private int netcom = 0;
+
+    public void setNetcom(int netcom){
+        this.netcom = netcom;
     }
 
     // ---------------------- server init ----------------------
@@ -78,7 +88,7 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                server = new BioServer();
+                server = netcom == 1 ? new NioServer() : new BioServer();
                 try {
                     server.start(port);
                 } catch (Exception e) {

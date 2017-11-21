@@ -17,7 +17,7 @@ public class DemoServiceImpl implements IDemoService {
     public UserDto sayHi(String name) {
 
         String word = MessageFormat.format("Hi {0}, from {1} as {2}",
-                name, DemoServiceImpl.class.getName(), System.currentTimeMillis());
+                name, DemoServiceImpl.class.getName(), Thread.currentThread().getName());
 
         return new UserDto(name, word);
     }
