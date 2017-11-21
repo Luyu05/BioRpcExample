@@ -60,9 +60,6 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if(client != null){
-            return;
-        }
         client = netcom == 1 ? new NioClient() : new BioClient();
         client.init(serverAddress, timeoutMillis);
     }
