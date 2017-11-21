@@ -1,7 +1,8 @@
-前言：基于Spring开发的基于BIO的RPC调用的例子
+前言：基于Spring开发的基于BIO/NIO的RPC调用的例子
 服务调用端采用动态代理，每次对象调用方法，都将请求参数发送给服务提供端
 序列化方式采用的是java原生的方法
 
+BIO
 1.Server
   1.1 在web启动的配置文件中，定义了原始类为框架核心的类-NetComServerFactory,项目启动时，会自动实例化该bean
   1.2 NetComServerFactory中首先会执行bean定义时的property标签对应的set方法
@@ -20,8 +21,10 @@
   2.3 接上，覆写了invoke方法，使得代理每次调用原始接口方法的时候，都会调用这个invoke方法；
   2.4 该方法将当前方法的信息、类信息封装为请求，一并通过socket发送到服务端，并接收服务端的响应，将结果返回给调用方。
 
+NIO
+
 TODO
-  1.nio
+  1.nio done
   2.netty
   3.zk
   4.hessian
