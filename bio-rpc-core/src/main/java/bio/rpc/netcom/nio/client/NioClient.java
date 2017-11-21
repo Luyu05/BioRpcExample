@@ -1,7 +1,7 @@
-package bio.rpc.netcom.bio.client;
+package bio.rpc.netcom.nio.client;
 
-import bio.rpc.netcom.Rules.RpcRequest;
-import bio.rpc.netcom.Rules.RpcResponse;
+import bio.rpc.netcom.protocol.RpcRequest;
+import bio.rpc.netcom.protocol.RpcResponse;
 import bio.rpc.netcom.client.IClient;
 
 import java.io.ByteArrayInputStream;

@@ -1,8 +1,8 @@
-package bio.rpc.netcom.bio.server;
+package bio.rpc.netcom.nio.server;
 
 import bio.rpc.netcom.NetComServerFactory;
-import bio.rpc.netcom.Rules.RpcRequest;
-import bio.rpc.netcom.Rules.RpcResponse;
+import bio.rpc.netcom.protocol.RpcRequest;
+import bio.rpc.netcom.protocol.RpcResponse;
 import bio.rpc.netcom.server.IServer;
 
 import java.io.*;

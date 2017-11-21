@@ -1,9 +1,9 @@
 package bio.rpc.netcom;
 
-import bio.rpc.netcom.Rules.*;
+import bio.rpc.netcom.protocol.*;
 import bio.rpc.netcom.annotation.RpcProviderService;
 import bio.rpc.netcom.bio.server.BioServer;
-import bio.rpc.netcom.bio.server.NioServer;
+import bio.rpc.netcom.nio.server.NioServer;
 import bio.rpc.netcom.server.IServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

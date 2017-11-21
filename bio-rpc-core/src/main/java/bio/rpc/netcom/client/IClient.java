@@ -1,7 +1,7 @@
 package bio.rpc.netcom.client;
 
-import bio.rpc.netcom.Rules.RpcRequest;
-import bio.rpc.netcom.Rules.RpcResponse;
+import bio.rpc.netcom.protocol.RpcRequest;
+import bio.rpc.netcom.protocol.RpcResponse;
 
 /**
  * Created by luyu on 2017/11/9.

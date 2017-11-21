@@ -1,14 +1,11 @@
 package bio.rpc.netcom.bio.client;
 
-import bio.rpc.netcom.Rules.RpcRequest;
-import bio.rpc.netcom.Rules.RpcResponse;
+import bio.rpc.netcom.protocol.RpcRequest;
+import bio.rpc.netcom.protocol.RpcResponse;
 import bio.rpc.netcom.client.IClient;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
 
 /**
  * Created by luyu on 2017/11/9.

@@ -1,4 +1,4 @@
-package bio.rpc.netcom.Rules;
+package bio.rpc.netcom.protocol;
 
 import java.io.Serializable;
 
