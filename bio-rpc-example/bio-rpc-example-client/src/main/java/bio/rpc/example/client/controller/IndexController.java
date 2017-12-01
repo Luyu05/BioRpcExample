@@ -18,14 +18,15 @@ public class IndexController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("")
+    @RequestMapping("/test")
     @ResponseBody
     public List<String> http() throws Exception {
         String userName = "milk";
 
         List<String> list = new ArrayList<String>();
-        list.add(demoService.sayHi(userName).toString());
-        list.add(userService.introduce(userName));
+//        list.add(demoService.sayHi(userName).toString());
+        String str = userService.introduce(userName);
+        list.add(str);
 
         return list;
     }

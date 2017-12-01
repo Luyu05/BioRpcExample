@@ -13,6 +13,7 @@ import org.springframework.beans.factory.InitializingBean;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -74,7 +75,7 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
 
                         // request
                         RpcRequest request = new RpcRequest();
-                        request.setRequestId(UUID.randomUUID().toString());
+                        request.setRequestId(UUID.randomUUID().toString()+new Date());
                         request.setCreateMillisTime(System.currentTimeMillis());
                         request.setClassName(method.getDeclaringClass().getName());
                         request.setMethodName(method.getName());
