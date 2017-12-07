@@ -1,5 +1,6 @@
 package bio.rpc.netcom;
 
+import bio.rpc.netcom.aio.server.AioServer;
 import bio.rpc.netcom.protocol.*;
 import bio.rpc.netcom.annotation.RpcProviderService;
 import bio.rpc.netcom.bio.server.BioServer;
@@ -31,12 +32,10 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
         this.port = port;
     }
 
-    /**
-     * 0=BIO 1=NIO
-     * */
-    private int netcom = 0;
 
-    public void setNetcom(int netcom){
+    private String netcom = "bio";
+
+    public void setNetcom(String netcom){
         this.netcom = netcom;
     }
 
@@ -81,14 +80,20 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
 
     }
 
-    private IServer server;
+    private IServer server = null;
     @Override
     public void afterPropertiesSet() throws Exception {
         // init rpc provider
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                server = netcom == 1 ? new NioServer() : new BioServer();
+                if(netcom.equalsIgnoreCase("bio")){
+                    server = new BioServer();
+                }else if(netcom.equalsIgnoreCase("nio")){
+                    server = new NioServer();
+                }else if(netcom.equalsIgnoreCase("aio")){
+                    server = new AioServer();
+                }
                 try {
                     server.start(port);
                 } catch (Exception e) {

@@ -74,6 +74,13 @@
             <version>3.2.13.RELEASE</version>
         </dependency>
 
+        <!--netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>5.0.0.Alpha2</version>
+        </dependency>
+
     </dependencies>
 
 

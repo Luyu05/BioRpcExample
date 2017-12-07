@@ -20,7 +20,7 @@
 	-->
     <bean class="bio.rpc.netcom.NetComServerFactory">
     	<property name="port" value="7080" />
-		<property name="netcom" value="1" />
+		<property name="netcom" value="aio" />
     </bean>
 
 </beans>

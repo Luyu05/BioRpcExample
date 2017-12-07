@@ -7,13 +7,13 @@
 	<bean id="demoService" class="bio.rpc.netcom.NetComClientProxy">
 		<property name="serverAddress" value="127.0.0.1:7080" />
 		<property name="iface" value="bio.rpc.example.api.IDemoService" />
-		<property name="netcom" value="1" />
+		<property name="netcom" value="aio" />
 	</bean>
 
 	<bean id="userService" class="bio.rpc.netcom.NetComClientProxy">
 		<property name="serverAddress" value="127.0.0.1:7080" />
 		<property name="iface" value="bio.rpc.example.api.UserService" />
-		<property name="netcom" value="1"/>
+		<property name="netcom" value="aio"/>
 	</bean>
 
 </beans>
