@@ -1,6 +1,8 @@
 package bio.rpc.netcom;
 
 import bio.rpc.netcom.aio.server.AioServer;
+import bio.rpc.netcom.netty.client.NettyClient;
+import bio.rpc.netcom.netty.server.NettyServer;
 import bio.rpc.netcom.protocol.*;
 import bio.rpc.netcom.annotation.RpcProviderService;
 import bio.rpc.netcom.bio.server.BioServer;
@@ -93,6 +95,8 @@ public class NetComServerFactory implements ApplicationContextAware ,Initializin
                     server = new NioServer();
                 }else if(netcom.equalsIgnoreCase("aio")){
                     server = new AioServer();
+                }else if(netcom.equalsIgnoreCase("netty")){
+                    server = new NettyServer();
                 }
                 try {
                     server.start(port);

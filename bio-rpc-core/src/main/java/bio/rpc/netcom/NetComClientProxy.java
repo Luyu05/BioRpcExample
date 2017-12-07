@@ -1,6 +1,7 @@
 package bio.rpc.netcom;
 
 import bio.rpc.netcom.aio.client.AioClient;
+import bio.rpc.netcom.netty.client.NettyClient;
 import bio.rpc.netcom.protocol.RpcRequest;
 import bio.rpc.netcom.protocol.RpcResponse;
 import bio.rpc.netcom.bio.client.BioClient;
@@ -68,6 +69,8 @@ public class NetComClientProxy implements FactoryBean<Object>, InitializingBean 
             client = new NioClient();
         }else if(netcom.equalsIgnoreCase("aio")){
             client = new AioClient();
+        }else if(netcom.equalsIgnoreCase("netty")){
+            client = new NettyClient();
         }
         client.init(serverAddress, timeoutMillis);
     }
